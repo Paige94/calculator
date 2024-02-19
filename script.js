@@ -23,3 +23,5 @@ const operator = 0;
 function operate(firstNumber, operator, secondNumber) {
     return operator(firstNumber, secondNumber);
 }
+
+// Show clicked numbers on display

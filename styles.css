@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 0 0;
+}
+
+button {
+    font-size: 26px;
+    border: black solid 1px;
+}
+
+.numbers button {
+    width: 25%;
+}
+
+p {
+    font-size: 26px;
+}
+
+.calculator {
+    width: 300px;
+    border: black solid 3px;
+    padding: 20px;
+}
+
+.display {
+    border: black solid 3px;
+    display: flex;
+    justify-content: center;
+}
+
+.numbers {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
