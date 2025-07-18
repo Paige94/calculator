@@ -2,6 +2,7 @@
 let firstNumber = 0;
 let secondNumber = 0;
 let operator = '';
+let nextOperator = '';
 
 const display = document.querySelector('.display');
 let displayValue = '';
@@ -38,26 +39,41 @@ numberButtons.forEach((button) => {
 // Recieve operator and store first number & operator inputs
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
+    // If second operator pressed before first two numbers calculated, do calculation & store second operator (not working yet)
+    if (operator != '' && firstNumber != '' && displayValue != '') {
+        nextOperator = button.id;
+        console.log("next operator is " + nextOperator);
+        secondNumber = displayValue;
+        console.log("second number is " + secondNumber);
+        displayValue = operate(operator, firstNumber, secondNumber);
+        display.textContent = displayValue;
         firstNumber = displayValue;
+        console.log("first number is " + firstNumber);
+        operator = nextOperator;
+        console.log("operator is " + operator);
         displayValue = '';
-        display.textContent = '';
+    } else {
+        firstNumber = displayValue;
+        console.log("first number is " + firstNumber);
         operator = button.id;
-        console.log(firstNumber);
-        console.log(operator);
-    })
+        console.log("operator is " + operator);
+        displayValue = '';
+    }
+    })    
 })
 
-// When 'equals' is clicked, get second number & perform correct calculation (needs checked)
+// When 'equals' is clicked, get second number & perform correct calculation
 const equalsButton = document.querySelector('.equals');
 
 equalsButton.addEventListener('click', () => {
-    if (operator != '' && firstNumber != '' && displayValue != 0) {
+    if (operator != '' && firstNumber != '' && displayValue != '') {
         secondNumber = displayValue;
-        console.log(secondNumber);
+        console.log("second number is " + secondNumber);
         displayValue = '';
         display.textContent = '';
         displayValue = operate(operator, firstNumber, secondNumber);
         display.textContent = displayValue;
+        firstNumber = 0;
     }
 })
 
