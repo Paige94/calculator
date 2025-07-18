@@ -15,6 +15,7 @@ button {
 
 .numbers button {
     width: 25%;
+    background-color: lightgray;
 }
 
 .calculator {

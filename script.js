@@ -59,7 +59,12 @@ operatorButtons.forEach((button) => {
         console.log("operator is " + operator);
         displayValue = '';
     }
-    })    
+    // Clear 'active' operator colour and then colour new active operator
+    operatorButtons.forEach((button) => {
+    button.style.backgroundColor = 'lightgray';
+     })
+    button.style.backgroundColor = 'gray';
+    })
 })
 
 // When 'equals' is clicked, get second number & perform correct calculation
@@ -75,9 +80,13 @@ equalsButton.addEventListener('click', () => {
         display.textContent = displayValue;
         firstNumber = 0;
     }
+    // Clear 'active' operator colour
+    operatorButtons.forEach((button) => {
+        button.style.backgroundColor = 'lightgray';
+    })
 })
 
-// Restart when 'clear' is clicked
+// Clear everything when 'clear' is clicked
 const clearButton = document.querySelector('.clear');
 
 clearButton.addEventListener('click', () => {
