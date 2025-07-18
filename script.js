@@ -1,3 +1,10 @@
+    // Clear 'active' operator colour
+    function clearOperatorColour () {
+        operatorButtons.forEach((button) => {
+        button.style.backgroundColor = 'lightgray';
+    })
+}
+
 // Initialise variables
 let firstNumber = 0;
 let secondNumber = 0;
@@ -28,11 +35,16 @@ function operate(operator, firstNumber, secondNumber) {
     return displayValue;
 }
 
-// Show clicked numbers on display
+// Show clicked numbers on display & record second number
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         displayValue = displayValue + button.textContent;
         display.textContent = displayValue;
+        if (operator !='' && firstNumber !='' && displayValue !='') {
+            secondNumber = displayValue;
+            console.log("second number is " + secondNumber);
+            clearOperatorColour();
+        }
     })
 })
 
@@ -43,8 +55,6 @@ operatorButtons.forEach((button) => {
     if (operator != '' && firstNumber != '' && displayValue != '') {
         nextOperator = button.id;
         console.log("next operator is " + nextOperator);
-        secondNumber = displayValue;
-        console.log("second number is " + secondNumber);
         displayValue = operate(operator, firstNumber, secondNumber);
         display.textContent = displayValue;
         firstNumber = displayValue;
@@ -61,10 +71,7 @@ operatorButtons.forEach((button) => {
         console.log("operator is " + operator);
         displayValue = '';
     }
-    // Clear 'active' operator colour and then colour new active operator
-    operatorButtons.forEach((button) => {
-    button.style.backgroundColor = 'lightgray';
-     })
+    clearOperatorColour();
     button.style.backgroundColor = 'gray';
     })
 })
@@ -82,11 +89,8 @@ equalsButton.addEventListener('click', () => {
         display.textContent = displayValue;
         firstNumber = 0;
     }
-    // Clear 'active' operator colour
-    operatorButtons.forEach((button) => {
-        button.style.backgroundColor = 'lightgray';
-    })
-})
+    clearOperatorColour();
+ })
 
 // Clear everything when 'clear' is clicked
 const clearButton = document.querySelector('.clear');
@@ -97,8 +101,5 @@ clearButton.addEventListener('click', () => {
     operator = '';
     firstNumber = 0;
     secondNumber = 0;
-    // Clear 'active' operator colour
-    operatorButtons.forEach((button) => {
-        button.style.backgroundColor = 'lightgray';
-})
+    clearOperatorColour();
 })
