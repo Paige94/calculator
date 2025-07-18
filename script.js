@@ -39,7 +39,7 @@ numberButtons.forEach((button) => {
 // Recieve operator and store first number & operator inputs
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
-    // If second operator pressed before first two numbers calculated, do calculation & store second operator (not working yet)
+    // If second operator pressed before first two numbers calculated, do calculation & store second operator
     if (operator != '' && firstNumber != '' && displayValue != '') {
         nextOperator = button.id;
         console.log("next operator is " + nextOperator);
@@ -52,6 +52,8 @@ operatorButtons.forEach((button) => {
         operator = nextOperator;
         console.log("operator is " + operator);
         displayValue = '';
+    } else if (operator != '') {
+        operator = button.id;
     } else {
         firstNumber = displayValue;
         console.log("first number is " + firstNumber);
@@ -95,4 +97,8 @@ clearButton.addEventListener('click', () => {
     operator = '';
     firstNumber = 0;
     secondNumber = 0;
+    // Clear 'active' operator colour
+    operatorButtons.forEach((button) => {
+        button.style.backgroundColor = 'lightgray';
+})
 })
