@@ -44,7 +44,7 @@ function operate(operator, firstNumber, secondNumber) {
         displayValue =  firstNumber / secondNumber;
     }
     console.log(displayValue);
-    return displayValue;
+    return Math.round(displayValue * 100) / 100;
 }
 
 // Show clicked numbers on display & record second number
