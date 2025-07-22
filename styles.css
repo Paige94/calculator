@@ -11,17 +11,27 @@ body {
 button {
     font-size: 26px;
     border: black solid 1px;
+    padding: 5px;
 }
 
 .numbers button {
     width: 25%;
-    background-color: lightgray;
+}
+
+.number {
+    background-color: #219ebc;
+}
+
+.operator, .equals, .clear {
+    background-color: #ffb703;
 }
 
 .calculator {
     width: 300px;
     border: black solid 3px;
     padding: 20px;
+    border-radius: 10%;
+    background-color: #8ecae6;
 }
 
 .display {
@@ -31,10 +41,12 @@ button {
     font-size: 26px;
     padding: 8px;
     height: 50px;
+    background-color: white;
 }
 
 .numbers {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
+    border: black solid 1px;
 }

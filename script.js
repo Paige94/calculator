@@ -1,7 +1,7 @@
 // Clear 'active' operator colour
  function clearOperatorColour () {
     operatorButtons.forEach((button) => {
-    button.style.backgroundColor = 'lightgray';
+    button.style.backgroundColor ='#ffb703';
     })
 }
 
@@ -68,7 +68,7 @@ numberButtons.forEach((button) => {
 // Recieve operator and store first number & operator inputs
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
-    // If second operator button clicked before first two numbers have been calculated, do calculation & record next operator
+    // If equals button has been pressed, if operator is pressed then treat the equaled total as the first no.
     if (equalsState === true) {
         operator = button.id;
         firstNumber = displayValue;
@@ -76,6 +76,7 @@ operatorButtons.forEach((button) => {
         secondNumber = 0;
         equalsState = false;
         console.log("equals state is " + equalsState);
+    // If second operator button clicked before first two numbers have been calculated, do calculation & record next operator
     } else if (operator != '' && firstNumber != '' && displayValue != '') {
         nextOperator = button.id;
         console.log("next operator is " + nextOperator);
@@ -96,7 +97,7 @@ operatorButtons.forEach((button) => {
         displayValue = '';
     }
     clearOperatorColour();
-    button.style.backgroundColor = 'gray';
+    button.style.backgroundColor = '#fb8500';
     })
 })
 
