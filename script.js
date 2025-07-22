@@ -1,8 +1,19 @@
-    // Clear 'active' operator colour
-    function clearOperatorColour () {
-        operatorButtons.forEach((button) => {
-        button.style.backgroundColor = 'lightgray';
+// Clear 'active' operator colour
+ function clearOperatorColour () {
+    operatorButtons.forEach((button) => {
+    button.style.backgroundColor = 'lightgray';
     })
+}
+
+// Clear display and all values to start fresh
+function clearAll () {
+    displayValue = '';
+    display.textContent = displayValue;
+    operator = '';
+    firstNumber = 0;
+    secondNumber = 0;
+    equalsState = false;
+    clearOperatorColour();
 }
 
 // Initialise variables
@@ -10,6 +21,7 @@ let firstNumber = 0;
 let secondNumber = 0;
 let operator = '';
 let nextOperator = '';
+let equalsState = false;
 
 const display = document.querySelector('.display');
 let displayValue = '';
@@ -38,6 +50,11 @@ function operate(operator, firstNumber, secondNumber) {
 // Show clicked numbers on display & record second number
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        if (equalsState === true) {
+            clearAll();
+            equalsState = false;
+            console.log("equals state is " + equalsState);
+        }
         displayValue = displayValue + button.textContent;
         display.textContent = displayValue;
         if (operator !='' && firstNumber !='' && displayValue !='') {
@@ -51,8 +68,15 @@ numberButtons.forEach((button) => {
 // Recieve operator and store first number & operator inputs
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
-    // If second operator pressed before first two numbers calculated, do calculation & store second operator
-    if (operator != '' && firstNumber != '' && displayValue != '') {
+    // If second operator button clicked before first two numbers have been calculated, do calculation & record next operator
+    if (equalsState === true) {
+        operator = button.id;
+        firstNumber = displayValue;
+        displayValue = '';
+        secondNumber = 0;
+        equalsState = false;
+        console.log("equals state is " + equalsState);
+    } else if (operator != '' && firstNumber != '' && displayValue != '') {
         nextOperator = button.id;
         console.log("next operator is " + nextOperator);
         displayValue = operate(operator, firstNumber, secondNumber);
@@ -76,13 +100,11 @@ operatorButtons.forEach((button) => {
     })
 })
 
-// When 'equals' is clicked, get second number & perform correct calculation
+// When 'equals' button is clicked perform correct calculation
 const equalsButton = document.querySelector('.equals');
 
 equalsButton.addEventListener('click', () => {
     if (operator != '' && firstNumber != '' && displayValue != '') {
-        secondNumber = displayValue;
-        console.log("second number is " + secondNumber);
         displayValue = '';
         display.textContent = '';
         displayValue = operate(operator, firstNumber, secondNumber);
@@ -90,16 +112,13 @@ equalsButton.addEventListener('click', () => {
         firstNumber = 0;
     }
     clearOperatorColour();
+    equalsState = true;
+    console.log("equals state is " + equalsState);
  })
 
-// Clear everything when 'clear' is clicked
+// Clear everything when 'clear' button is clicked
 const clearButton = document.querySelector('.clear');
 
 clearButton.addEventListener('click', () => {
-    displayValue = '';
-    display.textContent = displayValue;
-    operator = '';
-    firstNumber = 0;
-    secondNumber = 0;
-    clearOperatorColour();
+    clearAll ();
 })
